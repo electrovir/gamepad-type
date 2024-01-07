@@ -1,5 +1,5 @@
 import {getEnumTypedValues, getObjectTypedValues} from '@augment-vir/common';
-import {css, defineElement, defineElementEvent, html, listen} from 'element-vir';
+import {css, defineElement, defineElementEvent, html, listen, onDomCreated} from 'element-vir';
 import {GamepadDevice} from 'input-device-handler';
 import {assertInstanceOf} from 'run-time-assertions';
 import {noNativeFormStyles, noNativeSpacing} from 'vira';
@@ -116,6 +116,15 @@ export const VirGamepadName = defineElement<{
 
         const gamepadTypeSelectTemplate = html`
             <select
+                ${onDomCreated((element) => {
+                    /**
+                     * For some Reason the `?selected` attribute on the below `<option>` elements
+                     * doesn't work here on Firefox.
+                     */
+                    assertInstanceOf(element, HTMLSelectElement);
+
+                    element.value = gamepadModel;
+                })}
                 ${listen('change', (event) => {
                     const element = event.currentTarget;
                     assertInstanceOf(element, HTMLSelectElement);
