@@ -243,4 +243,92 @@ export const defaultGamepadLayouts: ReadonlyArray<Readonly<GamepadLayout>> = [
             warning: 'This browser has major issues reading this gamepad.',
         },
     },
+    {
+        /**
+         * Firefox has the following messed up mappings:
+         *
+         * - A bunch of buttons aren't mapped to anything on my controller
+         * - The triggers have no intermediate values at all
+         * - The d-pad is mapped to a single axe with the following values
+         *
+         *   - 0 before the d-pad has been used
+         *   - -1.3 at rest after the d-pad has been used
+         *   - -1.0 for up
+         *   - 0.1 for down
+         *   - 0.7 for left
+         *   - -0.4 for right
+         */
+        gamepadModels: [PredefinedGamepadModel.XboxWireless],
+        inputMappings: {
+            'axe-0': 'left-stick-x',
+            'axe-1': 'left-stick-y',
+            'axe-2': 'right-stick-x',
+            'axe-3': 'right-stick-y',
+            'axe-4': 'd-pad',
+            'button-0': 'A',
+            'button-1': 'B',
+            'button-2': 'unknown',
+            'button-3': 'X',
+            'button-4': 'Y',
+            'button-5': 'unknown',
+            'button-6': 'LB',
+            'button-7': 'RB',
+            'button-8': 'unknown',
+            'button-9': 'unknown',
+            'button-10': 'view',
+            'button-11': 'menu',
+            'button-12': 'guide',
+            'button-13': 'L3',
+            'button-14': 'R3',
+            'button-15': 'LT',
+            'button-16': 'RT',
+        },
+        systemVersions: [
+            {
+                browserVersion: '109.0',
+                browserName: 'Firefox',
+                osName: 'macOS',
+                osVersion: '10.15',
+            },
+        ],
+        notes: {
+            warning: 'This browser has major issues reading this gamepad.',
+        },
+    },
+    {
+        gamepadModels: [PredefinedGamepadModel.XboxWireless],
+        inputMappings: {
+            'axe-0': 'left-stick-x',
+            'axe-1': 'left-stick-y',
+            'axe-2': 'right-stick-x',
+            'axe-3': 'right-stick-y',
+            'button-0': 'A',
+            'button-1': 'B',
+            'button-10': 'L3',
+            'button-11': 'R3',
+            'button-12': 'd-pad-up',
+            'button-13': 'd-pad-down',
+            'button-14': 'd-pad-left',
+            'button-15': 'd-pad-right',
+            'button-16': 'guide',
+            'button-2': 'X',
+            'button-3': 'Y',
+            'button-4': 'LB',
+            'button-5': 'RB',
+            'button-6': 'LT',
+            'button-7': 'RT',
+            'button-8': 'view',
+            'button-9': 'menu',
+            'button-17': 'share',
+        },
+        systemVersions: [
+            {
+                browserVersion: '117.0.0.0',
+                browserName: 'Chrome',
+                osName: 'macOS',
+                osVersion: '10.15.7',
+            },
+        ],
+        notes: undefined,
+    },
 ];

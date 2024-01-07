@@ -46,4 +46,4 @@ export const predefinedGamepadModelDescriptions: Readonly<Record<string, string>
         'Microsoft Xbox Wireless gamepad for Microsoft Xbox One through Xbox Series X/S consoles.',
 
     [PredefinedGamepadModel.Unknown]: 'Unknown gamepad type.',
-};
+} satisfies Readonly<Record<PredefinedGamepadModel, string>>;
