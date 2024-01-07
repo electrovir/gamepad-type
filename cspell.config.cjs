@@ -4,6 +4,7 @@ module.exports = {
     ...baseConfig,
     ignorePaths: [
         ...baseConfig.ignorePaths,
+        'configs/config-output-*',
     ],
     words: [
         ...baseConfig.words,
