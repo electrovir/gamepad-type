@@ -1,10 +1,10 @@
-import {makeObjectKeysLowercase} from './demo-app/util/object';
 import {
     GamepadBrandMap,
     GamepadModelMap,
     PredefinedGamepadBrand,
     PredefinedGamepadModel,
 } from './gamepad-model';
+import {makeObjectKeysLowercase} from './util/lowercase-keys';
 
 /** Predefined mapping of gamepad ids / names to GamepadModel. */
 export const defaultGamepadModelMap: Readonly<GamepadModelMap> = makeObjectKeysLowercase({
