@@ -4,7 +4,8 @@ import {
     css,
     defineElementNoInputs,
     html,
-    isRenderReady,
+    isError,
+    isResolved,
     listen,
     perInstance,
 } from 'element-vir';
@@ -166,6 +167,11 @@ export const VirApp = defineElementNoInputs({
         .submission-buttons .subtitle:hover {
             opacity: 1;
         }
+        
+        .error {
+            font-weight: bold
+            color: red;
+        }
     `,
     stateInitStatic: {
         deviceHandler: perInstance(
@@ -256,12 +262,17 @@ export const VirApp = defineElementNoInputs({
         const savedModelMap = state.savedGamepadModelMap.value;
         const submittedChanges = state.submittedChanges.value;
         if (
-            !isRenderReady(savedLayouts) ||
-            !isRenderReady(savedModelMap) ||
-            !isRenderReady(submittedChanges)
+            !isResolved(savedLayouts) ||
+            !isResolved(savedModelMap) ||
+            !isResolved(submittedChanges)
         ) {
             return html`
                 <${ViraIcon.assign({icon: LoaderAnimated24Icon})}></${ViraIcon}>
+            `;
+        }
+        if (isError(savedLayouts) || isError(savedModelMap) || isError(submittedChanges)) {
+            return html`
+                <p class="error">Failed to initialize.</p>
             `;
         }
         const notSubmittedChanges = extractNewChanges(
