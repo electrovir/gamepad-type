@@ -1,3 +1,4 @@
+import {mapObjectValues} from '@augment-vir/common';
 import type {GamepadDevice, InputDevice} from 'input-device-handler';
 import {isRunTimeType} from 'run-time-assertions';
 import {defaultGamepadLayouts} from './default-layouts';
@@ -44,40 +45,51 @@ export function findMatchingGamepadLayout({
         return layout.gamepadModels.includes(gamepadModel);
     });
 
-    if (byGamepadModel.length < 2) {
+    if (byGamepadModel.length <= 1) {
         return byGamepadModel[0];
     }
 
-    const byOsName = byGamepadModel.filter((layout) =>
-        layout.systemVersions.some(
-            (system) => systemVersions.osName.toLowerCase() === system.osName.toLowerCase(),
-        ),
+    // filter by highest scoring system version match
+    const byLayoutScore = byGamepadModel.reduce(
+        (highestScoring, currentLayout) => {
+            const score = scoreLayoutSystemVersions(systemVersions, currentLayout);
+
+            if (score > highestScoring.score) {
+                return {
+                    score,
+                    layout: currentLayout,
+                };
+            } else {
+                return highestScoring;
+            }
+        },
+        {
+            layout: undefined as GamepadLayout | undefined,
+            score: -1,
+        },
     );
 
-    if (byOsName.length === 1) {
-        return byOsName[0];
-    } else if (!byOsName.length) {
-        return byGamepadModel[0];
-    }
+    return byLayoutScore.layout;
+}
 
-    // todo if necessary: filter by os version
+/** Gives a score to the layout based on how closely it matches the current system. */
+function scoreLayoutSystemVersions(
+    systemVersions: Readonly<SystemVersions>,
+    layout: Readonly<GamepadLayout>,
+) {
+    const scores = layout.systemVersions.map((layoutSystemVersions) => {
+        const matches = Object.values(
+            mapObjectValues(systemVersions, (key, value) => {
+                return layoutSystemVersions[key].toLowerCase() === value.toLowerCase();
+            }),
+        );
 
-    const byBrowserName = byOsName.filter((layout) =>
-        layout.systemVersions.some(
-            (system) =>
-                systemVersions.browserName.toLowerCase() === system.browserName.toLowerCase(),
-        ),
-    );
+        return matches.reduce((sum, match) => {
+            return sum + (match ? 1 : 0);
+        }, 0);
+    });
 
-    if (byBrowserName.length === 1) {
-        return byBrowserName[0];
-    } else if (!byBrowserName.length) {
-        return byOsName[0];
-    }
-
-    // todo if necessary: filter by browser version
-
-    return byBrowserName[0];
+    return Math.max(...scores);
 }
 
 /**

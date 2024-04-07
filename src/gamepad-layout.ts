@@ -9,7 +9,7 @@ export type GamepadLayout = {
     gamepadModels: string[];
     systemVersions: SystemVersions[];
     inputMappings: Record<string, string>;
-    notes:
+    notes?:
         | PartialAndUndefined<{
               /**
                * A simple note with an explanation that does not significantly impact the gamepad's

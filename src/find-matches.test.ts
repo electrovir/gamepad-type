@@ -1,6 +1,7 @@
 import {itCases} from '@augment-vir/browser-testing';
 import {defaultGamepadLayouts} from './default-layouts';
 import {findMatchingGamepadLayout} from './find-matches';
+import {mockLayouts} from './gamepad-layout.mock';
 
 describe(findMatchingGamepadLayout.name, () => {
     itCases(findMatchingGamepadLayout, [
@@ -30,6 +31,20 @@ describe(findMatchingGamepadLayout.name, () => {
                 systemVersions: defaultGamepadLayouts[0]?.systemVersions[0]!,
             },
             expect: defaultGamepadLayouts[0],
+        },
+        {
+            it: 'finds layout with more specific version number',
+            input: {
+                gamepad: {deviceName: 'Wireless Controller Extended Gamepad'},
+                layouts: mockLayouts,
+                systemVersions: {
+                    browserVersion: '17.3.1',
+                    browserName: 'Safari',
+                    osName: 'macOS',
+                    osVersion: '10.15.7',
+                },
+            },
+            expect: mockLayouts[8],
         },
     ]);
 });
