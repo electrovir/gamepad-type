@@ -13,10 +13,9 @@ import {findMatchingGamepadLayout} from '../index';
 // using InputDeviceHandler
 {
     const deviceHandler = new InputDeviceHandler();
-    const allDevices = deviceHandler.readAllDevices();
 
     const maybeLayout = findMatchingGamepadLayout({
-        gamepad: allDevices[0],
+        gamepad: deviceHandler.readAllDevices()[0],
     });
 
     maybeLayout?.inputMappings;

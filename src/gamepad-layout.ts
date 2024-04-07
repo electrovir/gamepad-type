@@ -4,6 +4,8 @@ import {SystemVersions} from './system-versions';
 /**
  * A mapping of gamepad button and axe numbers to their names. Mappings depend on the current system
  * and gamepad model (so those are included as well).
+ *
+ * @category Types
  */
 export type GamepadLayout = {
     gamepadModels: string[];

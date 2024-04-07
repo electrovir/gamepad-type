@@ -4,8 +4,10 @@ import {isJsonEqual} from 'run-time-assertions';
 const bowser = Bowser.getParser(navigator.userAgent);
 
 /**
- * Collection of system versions that are used to differentiate gamepad layouts (as they can differ
- * dramatically between different browser and operating system versions).
+ * System versions that are used to differentiate gamepad layouts, since layouts may differ
+ * dramatically between different browsers, operating systems, and versions of each.
+ *
+ * @category Types
  */
 export type SystemVersions = Readonly<{
     osName: string;
@@ -15,8 +17,10 @@ export type SystemVersions = Readonly<{
 }>;
 
 /**
- * Get the current system's collection of versions. Parses the user agent string using the bowser
- * package.
+ * Get the current system's versions. This is determined by parsing the user agent string using the
+ * [bowser](https://www.npmjs.com/package/bowser) package.
+ *
+ * @category Utils
  */
 export function getSystemVersions(): SystemVersions {
     return {
@@ -27,7 +31,11 @@ export function getSystemVersions(): SystemVersions {
     };
 }
 
-/** Check if the given systemVersion is in the array of systemVersions. */
+/**
+ * Check if a system version is in an array of system versions.
+ *
+ * @category Utils
+ */
 export function includesSystemVersion(
     systemVersions: ReadonlyArray<Readonly<SystemVersions>>,
     systemVersion: Readonly<SystemVersions>,

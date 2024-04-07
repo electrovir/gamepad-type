@@ -16,6 +16,8 @@ import {SystemVersions, getSystemVersions} from './system-versions';
 /**
  * Given a gamepad name, tries to find the best matching predefined or custom gamepad layout based
  * on system versions. Returns undefined if no possible matches are found.
+ *
+ * @category Main
  */
 export function findMatchingGamepadLayout({
     gamepad,
@@ -96,6 +98,8 @@ function scoreLayoutSystemVersions(
  * Find matching gamepad model, brand, and description. Will return PredefinedGamepadModel.Unknown,
  * PredefinedGamepadBrand.Unknown, and an empty string respectively if the given gamepad name is not
  * known.
+ *
+ * @category Main
  */
 export function findMatchingGamepadModel({
     gamepad: gamepadNameOrDevice,

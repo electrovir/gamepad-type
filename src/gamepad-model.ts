@@ -1,9 +1,31 @@
-/** Mapping from Gamepad ids or names to model strings. */
-export type GamepadModelMap = Readonly<Record<string, string | PredefinedGamepadModel>>;
-/** Mapping from Gamepad ids or names to brand strings. */
-export type GamepadBrandMap = Readonly<Record<string, string | PredefinedGamepadBrand>>;
+/**
+ * Mapping from Gamepad ids or names to model strings.
+ *
+ * @category Types
+ */
+export type GamepadModelMap = Readonly<{
+    [GamepadId in string]: string | PredefinedGamepadModel;
+}>;
+/**
+ * Mapping from Gamepad ids or names to brand strings.
+ *
+ * @category Types
+ */
+export type GamepadBrandMap = Readonly<{
+    [GamepadId in string]: string | PredefinedGamepadBrand;
+}>;
 
-/** A new entry for each gamepad generation that features different button layouts. */
+/**
+ * All gamepad models known and defined by the
+ * [gamepad-type](https://www.npmjs.com/package/gamepad-type) package. It contains a new entry for
+ * each gamepad generation that features different button layouts.
+ *
+ * Note that any consumer of the [gamepad-type](https://www.npmjs.com/package/gamepad-type) package
+ * is able to freely define their own models as well, this is merely the _pre_ defined set of
+ * models.
+ *
+ * @category Defaults
+ */
 export enum PredefinedGamepadModel {
     SwitchPro = 'switch-pro',
 
@@ -19,7 +41,16 @@ export enum PredefinedGamepadModel {
     Unknown = 'unknown',
 }
 
-/** Brands for all GamepadModel values. */
+/**
+ * Gamepad brands known and defined by the
+ * [gamepad-type](https://www.npmjs.com/package/gamepad-type) package.
+ *
+ * Note that any consumer of the [gamepad-type](https://www.npmjs.com/package/gamepad-type) package
+ * is able to freely define their own brands as well, this is merely the _pre_ defined set of
+ * brands.
+ *
+ * @category Defaults
+ */
 export enum PredefinedGamepadBrand {
     Microsoft = 'microsoft',
     Nintendo = 'nintendo',
@@ -29,7 +60,12 @@ export enum PredefinedGamepadBrand {
     Unknown = 'unknown',
 }
 
-/** Description of each gamepad model. */
+/**
+ * Description of each gamepad model predefined by the
+ * [gamepad-type](https://www.npmjs.com/package/gamepad-type) package.
+ *
+ * @category Defaults
+ */
 export const predefinedGamepadModelDescriptions: Readonly<Record<string, string>> = {
     [PredefinedGamepadModel.SwitchPro]:
         'Nintendo Switch Pro gamepad for the Nintendo Switch console.',

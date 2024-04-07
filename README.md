@@ -1,14 +1,16 @@
 # gamepad-type
 
-Detects the following for a gamepad:
+Determine gamepad models, brands, and layouts based on the user operating system.
+
+Detects the following per gamepad:
 
 -   gamepad model
 -   gamepad brand
 -   gamepad input names
 
-based on hardcoded, pre-collected data.
+based on hardcoded, pre-collected data. You are also able to define new values for each in case any data is missing.
 
-If your gamepad isn't mapping correctly, please enter updated information here: https://zorp.fun/gamepad-tester. Every browser, operating system, and gamepad combination potentially produces different values so it's impossible for me to single-handedly account for them all.
+If you notice incorrect mappings, please enter updated information [on the demo page](https://zorp.fun/gamepad-tester). Every browser, browser version, operating system, and operating system version combination produces different values so it's impossible for me to single-handedly account for them all.
 
 It is encouraged that you use the package [`input-device-handler`](https://www.npmjs.com/package/input-device-handler) in conjunction with this one, but it is not required.
 
@@ -27,10 +29,10 @@ npm i gamepad-type
 
 # usage
 
-The primary functions that this package exports are the following:
+The primary exports of this package are the following:
 
--   `findMatchingGamepadModel`: given a gamepad name, determines the gamepad's model and brand. Also includes a model description string. Allows custom model and brand map inputs to handle edge cases that this package doesn't cover yet. (If you find those edge cases please either [open a ticket in the GitHub repo](https://github.com/electrovir/gamepad-type/issues/new) or submit your fixed data on [the demo page](https://zorp.fun/gamepad-tester).)
--   `findMatchingGamepadLayout`: given a gamepad name, determines the gamepad's button and axe names (based on gamepad model and user operating system). Allows custom model and input map inputs to handle edge cases that this package doesn't cover yet. (If you find those edge cases please either [open a ticket in the GitHub repo](https://github.com/electrovir/gamepad-type/issues/new) or submit your fixed data on [the demo page](https://zorp.fun/gamepad-tester).)
+-   [`findMatchingGamepadModel`](https://electrovir.github.io/gamepad-type/functions/findMatchingGamepadModel.html): given the system-level gamepad id, determines the gamepad's model and brand. Also includes a model description string. Allows custom model and brand map inputs to handle edge cases that this package doesn't cover. (If you find those edge cases please either [open a ticket in the GitHub repo](https://github.com/electrovir/gamepad-type/issues/new) or submit your fixed data on [the demo page](https://zorp.fun/gamepad-tester).)
+-   [`findMatchingGamepadLayout`](https://electrovir.github.io/gamepad-type/functions/findMatchingGamepadLayout.html): given the system-level gamepad id, determines the gamepad's button and axe names (based on gamepad model and user operating system). Allows custom model and input map inputs to handle edge cases that this package doesn't cover. (If you find those edge cases please either [open a ticket in the GitHub repo](https://github.com/electrovir/gamepad-type/issues/new) or submit your fixed data on [the demo page](https://zorp.fun/gamepad-tester).)
 
 ## examples
 
@@ -52,10 +54,9 @@ The primary functions that this package exports are the following:
     // using InputDeviceHandler
     {
         const deviceHandler = new InputDeviceHandler();
-        const allDevices = deviceHandler.readAllDevices();
 
         const {gamepadBrand, gamepadModel, gamepadModelDescription} = findMatchingGamepadModel({
-            gamepad: allDevices[0],
+            gamepad: deviceHandler.readAllDevices()[0],
         });
     }
     ```
@@ -80,10 +81,9 @@ The primary functions that this package exports are the following:
     // using InputDeviceHandler
     {
         const deviceHandler = new InputDeviceHandler();
-        const allDevices = deviceHandler.readAllDevices();
 
         const maybeLayout = findMatchingGamepadLayout({
-            gamepad: allDevices[0],
+            gamepad: deviceHandler.readAllDevices()[0],
         });
 
         maybeLayout?.inputMappings;

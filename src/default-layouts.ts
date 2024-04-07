@@ -1,7 +1,12 @@
 import {GamepadLayout} from './gamepad-layout';
 import {PredefinedGamepadModel} from './gamepad-model';
 
-/** Gamepad layouts that have already been determined for most major OEM gamepad. */
+/**
+ * Gamepad layouts defined by the [gamepad-type](https://www.npmjs.com/package/gamepad-type) package
+ * that have already been determined for most major OEM gamepads.
+ *
+ * @category Defaults
+ */
 export const defaultGamepadLayouts: ReadonlyArray<Readonly<GamepadLayout>> = [
     {
         gamepadModels: [PredefinedGamepadModel.SwitchPro],

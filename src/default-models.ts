@@ -6,7 +6,12 @@ import {
 } from './gamepad-model';
 import {makeObjectKeysLowercase} from './util/lowercase-keys';
 
-/** Predefined mapping of gamepad ids / names to GamepadModel. */
+/**
+ * Gamepad mappings of gamepad ids / names to GamepadModel defined by the
+ * [gamepad-type](https://www.npmjs.com/package/gamepad-type) package.
+ *
+ * @category Defaults
+ */
 export const defaultGamepadModelMap: Readonly<GamepadModelMap> = makeObjectKeysLowercase({
     /** Safari detected OEM Switch Pro gamepad name. */
     'Pro Controller Extended Gamepad': PredefinedGamepadModel.SwitchPro,
@@ -33,7 +38,11 @@ export const defaultGamepadModelMap: Readonly<GamepadModelMap> = makeObjectKeysL
         PredefinedGamepadModel.XboxWireless,
 });
 
-/** PredefinedGamepadBrand for each PredefinedGamepadModel. */
+/**
+ * PredefinedGamepadBrand for each PredefinedGamepadModel.
+ *
+ * @category Defaults
+ */
 export const defaultGamepadBrandMap: GamepadBrandMap = {
     [PredefinedGamepadModel.SwitchPro]: PredefinedGamepadBrand.Nintendo,
     [PredefinedGamepadModel.Xbox360]: PredefinedGamepadBrand.Microsoft,

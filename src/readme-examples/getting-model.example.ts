@@ -11,9 +11,8 @@ import {findMatchingGamepadModel} from '../index';
 // using InputDeviceHandler
 {
     const deviceHandler = new InputDeviceHandler();
-    const allDevices = deviceHandler.readAllDevices();
 
     const {gamepadBrand, gamepadModel, gamepadModelDescription} = findMatchingGamepadModel({
-        gamepad: allDevices[0],
+        gamepad: deviceHandler.readAllDevices()[0],
     });
 }
