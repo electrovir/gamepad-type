@@ -9,6 +9,7 @@ module.exports = {
     words: [
         ...baseConfig.words,
         'bowser',
+        'dualshock',
         'gamepad',
         'gamepads',
         'revparse',

@@ -36,6 +36,10 @@ export const defaultGamepadModelMap: Readonly<GamepadModelMap> = makeObjectKeysL
     /** Chrome detected OEM Xbox Wireless gamepad name. */
     'Xbox Series X Controller (STANDARD GAMEPAD Vendor: 045e Product: 0b12)':
         PredefinedGamepadModel.XboxWireless,
+
+    /** Inputs from external users. */
+    'DUALSHOCK 4 Wireless Controller Extended Gamepad':
+        PredefinedGamepadModel.PlaystationDualShock4,
 });
 
 /**
