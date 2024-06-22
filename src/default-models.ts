@@ -38,8 +38,12 @@ export const defaultGamepadModelMap: Readonly<GamepadModelMap> = makeObjectKeysL
         PredefinedGamepadModel.XboxWireless,
 
     /** Inputs from external users. */
+
     'DUALSHOCK 4 Wireless Controller Extended Gamepad':
-        PredefinedGamepadModel.PlaystationDualShock4,
+        PredefinedGamepadModel.PlaystationDualShock4, // e9ed532bca264299849b10d076040798
+    'DUALSHOCK 4 Wireless Controller (STANDARD GAMEPAD Vendor: 054c Product: 09cc)':
+        PredefinedGamepadModel.PlaystationDualShock4, // 9e8343773463416683ac7501d766e682
+    '54c-9cc-DUALSHOCK 4 Wireless Controller': PredefinedGamepadModel.PlaystationDualShock4, // 25024a8747044b43b71608ffa13c18c7
 });
 
 /**
