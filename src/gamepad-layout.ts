@@ -1,5 +1,5 @@
-import {PartialAndUndefined} from '@augment-vir/common';
-import {SystemVersions} from './system-versions';
+import {PartialWithUndefined} from '@augment-vir/common';
+import {SystemVersions} from './system-versions.js';
 
 /**
  * A mapping of gamepad button and axe numbers to their names. Mappings depend on the current system
@@ -12,7 +12,7 @@ export type GamepadLayout = {
     systemVersions: SystemVersions[];
     inputMappings: Record<string, string>;
     notes?:
-        | PartialAndUndefined<{
+        | PartialWithUndefined<{
               /**
                * A simple note with an explanation that does not significantly impact the gamepad's
                * performance.

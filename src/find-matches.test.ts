@@ -1,7 +1,8 @@
-import {itCases} from '@augment-vir/browser-testing';
-import {defaultGamepadLayouts} from './default-layouts';
-import {findMatchingGamepadLayout} from './find-matches';
-import {mockLayouts} from './gamepad-layout.mock';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import {describe, itCases} from '@augment-vir/test';
+import {defaultGamepadLayouts} from './default-layouts.js';
+import {findMatchingGamepadLayout} from './find-matches.js';
+import {mockLayouts} from './gamepad-layout.mock.js';
 
 describe(findMatchingGamepadLayout.name, () => {
     itCases(findMatchingGamepadLayout, [
@@ -18,7 +19,7 @@ describe(findMatchingGamepadLayout.name, () => {
                 gamepad: {
                     deviceName: 'Pro Controller Extended Gamepad',
                 },
-                systemVersions: defaultGamepadLayouts[0]?.systemVersions[0]!,
+                systemVersions: defaultGamepadLayouts[0]!.systemVersions[0]!,
             },
             expect: defaultGamepadLayouts[0],
         },
@@ -28,7 +29,7 @@ describe(findMatchingGamepadLayout.name, () => {
                 gamepad: {
                     deviceName: 'pro controller extended gamepad',
                 },
-                systemVersions: defaultGamepadLayouts[0]?.systemVersions[0]!,
+                systemVersions: defaultGamepadLayouts[0]!.systemVersions[0]!,
             },
             expect: defaultGamepadLayouts[0],
         },

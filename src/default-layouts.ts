@@ -1,5 +1,6 @@
-import {GamepadLayout} from './gamepad-layout';
-import {PredefinedGamepadModel} from './gamepad-model';
+/* eslint-disable sonarjs/no-hardcoded-ip */
+import {GamepadLayout} from './gamepad-layout.js';
+import {PredefinedGamepadModel} from './gamepad-model.js';
 
 /**
  * Gamepad layouts defined by the [gamepad-type](https://www.npmjs.com/package/gamepad-type) package

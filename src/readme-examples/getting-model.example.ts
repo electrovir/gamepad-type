@@ -1,5 +1,5 @@
 import {InputDeviceHandler} from 'input-device-handler';
-import {findMatchingGamepadModel} from '../index';
+import {findMatchingGamepadModel} from '../index.js';
 
 // using window.navigator directly
 {

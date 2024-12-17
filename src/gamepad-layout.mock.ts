@@ -1,4 +1,5 @@
-import {GamepadLayout} from './gamepad-layout';
+/* eslint-disable sonarjs/no-hardcoded-ip */
+import {GamepadLayout} from './gamepad-layout.js';
 
 export const mockLayouts: ReadonlyArray<Readonly<GamepadLayout>> = [
     {

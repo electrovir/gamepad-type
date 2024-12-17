@@ -1,5 +1,5 @@
+import {check} from '@augment-vir/assert';
 import Bowser from 'bowser';
-import {isJsonEqual} from 'run-time-assertions';
 
 const bowser = Bowser.getParser(navigator.userAgent);
 
@@ -40,5 +40,5 @@ export function includesSystemVersion(
     systemVersions: ReadonlyArray<Readonly<SystemVersions>>,
     systemVersion: Readonly<SystemVersions>,
 ): boolean {
-    return !!systemVersions.find((matchThis) => isJsonEqual(matchThis, systemVersion));
+    return !!systemVersions.some((matchThis) => check.jsonEquals(matchThis, systemVersion));
 }

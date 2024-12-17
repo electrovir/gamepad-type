@@ -1,8 +1,8 @@
-import {PropertyValueType} from '@augment-vir/common';
+import {Values} from '@augment-vir/common';
 
 export function makeObjectKeysLowercase<Generic extends Readonly<Record<PropertyKey, unknown>>>(
     input: Generic,
-): Record<PropertyKey, PropertyValueType<Generic>> {
+): Record<PropertyKey, Values<Generic>> {
     return Object.fromEntries(
         Object.entries(input).map(
             ([
@@ -16,5 +16,5 @@ export function makeObjectKeysLowercase<Generic extends Readonly<Record<Property
                 ];
             },
         ),
-    ) as Record<PropertyKey, PropertyValueType<Generic>>;
+    ) as Record<PropertyKey, Values<Generic>>;
 }

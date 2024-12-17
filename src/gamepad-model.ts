@@ -24,6 +24,8 @@ export type GamepadBrandMap = Readonly<{
  * is able to freely define their own models as well, this is merely the _pre_ defined set of
  * models.
  *
+ * See {@link predefinedGamepadModelDescriptions} for comments on what each model is.
+ *
  * @category Defaults
  */
 export enum PredefinedGamepadModel {

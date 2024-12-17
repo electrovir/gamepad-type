@@ -1,17 +1,17 @@
+import {check} from '@augment-vir/assert';
 import {mapObjectValues} from '@augment-vir/common';
 import type {GamepadDevice, InputDevice} from 'input-device-handler';
-import {isRunTimeType} from 'run-time-assertions';
-import {defaultGamepadLayouts} from './default-layouts';
-import {defaultGamepadBrandMap, defaultGamepadModelMap} from './default-models';
-import type {GamepadLayout} from './gamepad-layout';
+import {defaultGamepadLayouts} from './default-layouts.js';
+import {defaultGamepadBrandMap, defaultGamepadModelMap} from './default-models.js';
+import type {GamepadLayout} from './gamepad-layout.js';
 import {
     GamepadBrandMap,
     GamepadModelMap,
     PredefinedGamepadBrand,
     PredefinedGamepadModel,
     predefinedGamepadModelDescriptions,
-} from './gamepad-model';
-import {SystemVersions, getSystemVersions} from './system-versions';
+} from './gamepad-model.js';
+import {SystemVersions, getSystemVersions} from './system-versions.js';
 
 /**
  * Given a gamepad name, tries to find the best matching predefined or custom gamepad layout based
@@ -34,8 +34,7 @@ export function findMatchingGamepadLayout({
     /** Provide custom system versions. Defaults to the current system's system versions. */
     systemVersions?: Readonly<SystemVersions>;
 }): GamepadLayout | undefined {
-    const gamepadName: string =
-        (isRunTimeType(gamepad, 'string') ? gamepad : gamepad?.deviceName) || '';
+    const gamepadName: string = (check.isString(gamepad) ? gamepad : gamepad?.deviceName) || '';
 
     const {gamepadModel} = findMatchingGamepadModel({
         gamepad: gamepadName,

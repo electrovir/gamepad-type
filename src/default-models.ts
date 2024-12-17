@@ -3,8 +3,8 @@ import {
     GamepadModelMap,
     PredefinedGamepadBrand,
     PredefinedGamepadModel,
-} from './gamepad-model';
-import {makeObjectKeysLowercase} from './util/lowercase-keys';
+} from './gamepad-model.js';
+import {makeObjectKeysLowercase} from './util/lowercase-keys.js';
 
 /**
  * Gamepad mappings of gamepad ids / names to GamepadModel defined by the
