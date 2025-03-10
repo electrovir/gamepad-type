@@ -16,8 +16,8 @@ It is encouraged that you use the package [`input-device-handler`](https://www.n
 
 # links
 
--   [demo page](https://zorp.fun/gamepad-tester) (allows submitting gamepad mapping fixes)
--   [full API docs](https://electrovir.github.io/gamepad-type)
+-   [demo page](https://electrovir.github.io/gamepad-type) (allows submitting gamepad mapping fixes)
+-   [full API docs](https://electrovir.github.io/gamepad-type/docs)
 -   [GitHub repo](https://github.com/electrovir/gamepad-type) (please open issues for gamepad mapping updates)
 -   [npm package](https://www.npmjs.com/package/gamepad-type)
 
