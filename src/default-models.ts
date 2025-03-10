@@ -58,5 +58,4 @@ export const defaultGamepadBrandMap: GamepadBrandMap = {
     [PredefinedGamepadModel.PlaystationDualShock]: PredefinedGamepadBrand.Sony,
     [PredefinedGamepadModel.PlaystationDualShock4]: PredefinedGamepadBrand.Sony,
     [PredefinedGamepadModel.SteamDeck]: PredefinedGamepadBrand.Valve,
-    [PredefinedGamepadModel.Unknown]: PredefinedGamepadBrand.Unknown,
 };

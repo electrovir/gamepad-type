@@ -39,9 +39,8 @@ export enum PredefinedGamepadModel {
 
     Xbox360 = 'xbox-360',
     XboxWireless = 'xbox-wireless',
-
-    Unknown = 'unknown',
 }
+
 /**
  * A map of {@link PredefinedGamepadModel} to pretty user facing names.
  *
@@ -75,8 +74,6 @@ export enum PredefinedGamepadBrand {
     Nintendo = 'nintendo',
     Sony = 'sony',
     Valve = 'valve',
-
-    Unknown = 'unknown',
 }
 
 /**
@@ -99,6 +96,4 @@ export const predefinedGamepadModelDescriptions: Readonly<Record<string, string>
         'Microsoft Xbox 360 gamepad for the Microsoft Xbox 360 console. Can be wired or wireless.',
     [PredefinedGamepadModel.XboxWireless]:
         'Microsoft Xbox Wireless gamepad for Microsoft Xbox One through Xbox Series X/S consoles.',
-
-    [PredefinedGamepadModel.Unknown]: 'Unknown gamepad type.',
 } satisfies Readonly<Record<PredefinedGamepadModel, string>>;
