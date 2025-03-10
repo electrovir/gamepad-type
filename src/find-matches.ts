@@ -7,11 +7,10 @@ import type {GamepadLayout} from './gamepad-layout.js';
 import {
     GamepadBrandMap,
     GamepadModelMap,
-    PredefinedGamepadBrand,
-    PredefinedGamepadModel,
     predefinedGamepadModelDescriptions,
 } from './gamepad-model.js';
 import {SystemVersions, getSystemVersions} from './system-versions.js';
+import {makeObjectKeysLowercase} from './util/lowercase-keys.js';
 
 /**
  * Given a gamepad name, tries to find the best matching predefined or custom gamepad layout based
@@ -42,9 +41,11 @@ export function findMatchingGamepadLayout({
     });
 
     // filter by gamepad model
-    const byGamepadModel = layouts.filter((layout) => {
-        return layout.gamepadModels.includes(gamepadModel);
-    });
+    const byGamepadModel = gamepadModel
+        ? layouts.filter((layout) => {
+              return layout.gamepadModels.includes(gamepadModel);
+          })
+        : [];
 
     if (byGamepadModel.length <= 1) {
         return byGamepadModel[0];
@@ -110,24 +111,29 @@ export function findMatchingGamepadModel({
      * package.
      */
     gamepad: string | Readonly<Pick<InputDevice, 'deviceName'>> | undefined;
+    /** Defaults to the predefined internal model map. */
     gamepadModelMap?: Readonly<GamepadModelMap> | undefined;
+    /** Defaults to the predefined internal brand map. */
     gamepadBrandMap?: Readonly<GamepadBrandMap> | undefined;
 }): {
-    gamepadModel: string;
-    gamepadBrand: string;
-    gamepadModelDescription: string;
+    gamepadModel: string | undefined;
+    gamepadBrand: string | undefined;
+    gamepadModelDescription: string | undefined;
 } {
-    const gamepadName: string =
+    const gamepadName: string | undefined =
         (typeof gamepadNameOrDevice === 'string'
             ? gamepadNameOrDevice
-            : gamepadNameOrDevice?.deviceName) || '';
+            : gamepadNameOrDevice?.deviceName) || undefined;
 
-    const gamepadModel: string =
-        gamepadModelMap[gamepadName.toLowerCase()] || PredefinedGamepadModel.Unknown;
+    const gamepadModel: string | undefined =
+        (gamepadName && makeObjectKeysLowercase(gamepadModelMap)[gamepadName.toLowerCase()]) ||
+        undefined;
 
     return {
         gamepadModel,
-        gamepadBrand: gamepadBrandMap[gamepadModel] || PredefinedGamepadBrand.Unknown,
-        gamepadModelDescription: predefinedGamepadModelDescriptions[gamepadModel] || '',
+        gamepadBrand:
+            (gamepadModel && makeObjectKeysLowercase(gamepadBrandMap)[gamepadModel]) || undefined,
+        gamepadModelDescription:
+            (gamepadModel && predefinedGamepadModelDescriptions[gamepadModel]) || undefined,
     };
 }

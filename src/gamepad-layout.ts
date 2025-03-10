@@ -8,6 +8,10 @@ import {SystemVersions} from './system-versions.js';
  * @category Types
  */
 export type GamepadLayout = {
+    /**
+     * The list of supported gamepad models for this layout. These are _mapped_ model names, not the
+     * raw device names or gamepad ids directly from the browser.
+     */
     gamepadModels: string[];
     systemVersions: SystemVersions[];
     inputMappings: Record<string, string>;

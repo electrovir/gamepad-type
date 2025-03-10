@@ -4,7 +4,6 @@ import {
     PredefinedGamepadBrand,
     PredefinedGamepadModel,
 } from './gamepad-model.js';
-import {makeObjectKeysLowercase} from './util/lowercase-keys.js';
 
 /**
  * Gamepad mappings of gamepad ids / names to GamepadModel defined by the
@@ -12,7 +11,7 @@ import {makeObjectKeysLowercase} from './util/lowercase-keys.js';
  *
  * @category Defaults
  */
-export const defaultGamepadModelMap: Readonly<GamepadModelMap> = makeObjectKeysLowercase({
+export const defaultGamepadModelMap: Readonly<GamepadModelMap> = {
     /** Safari detected OEM Switch Pro gamepad name. */
     'Pro Controller Extended Gamepad': PredefinedGamepadModel.SwitchPro,
     /** Safari detected OEM Xbox Wireless gamepad name. */
@@ -44,7 +43,7 @@ export const defaultGamepadModelMap: Readonly<GamepadModelMap> = makeObjectKeysL
     'DUALSHOCK 4 Wireless Controller (STANDARD GAMEPAD Vendor: 054c Product: 09cc)':
         PredefinedGamepadModel.PlaystationDualShock4, // 9e8343773463416683ac7501d766e682
     '54c-9cc-DUALSHOCK 4 Wireless Controller': PredefinedGamepadModel.PlaystationDualShock4, // 25024a8747044b43b71608ffa13c18c7
-});
+};
 
 /**
  * PredefinedGamepadBrand for each PredefinedGamepadModel.
