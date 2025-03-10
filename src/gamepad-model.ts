@@ -42,6 +42,23 @@ export enum PredefinedGamepadModel {
 
     Unknown = 'unknown',
 }
+/**
+ * A map of {@link PredefinedGamepadModel} to pretty user facing names.
+ *
+ * @category Defaults
+ */
+export const fancyGamepadModelName: Record<PredefinedGamepadModel, string> = {
+    [PredefinedGamepadModel.SwitchPro]: 'Switch Pro Controller',
+
+    [PredefinedGamepadModel.PlaystationDualShock]: 'PlayStation DualShock',
+    [PredefinedGamepadModel.PlaystationDualShock4]: 'PlayStation DualShock 4',
+    [PredefinedGamepadModel.PlaystationDualSense]: 'PlayStation DualSense',
+
+    [PredefinedGamepadModel.SteamDeck]: 'Steam Deck',
+
+    [PredefinedGamepadModel.Xbox360]: 'Xbox 360',
+    [PredefinedGamepadModel.XboxWireless]: 'Xbox Wireless',
+};
 
 /**
  * Gamepad brands known and defined by the
