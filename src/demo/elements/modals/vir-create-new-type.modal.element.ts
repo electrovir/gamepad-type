@@ -1,7 +1,7 @@
 import {assert} from '@augment-vir/assert';
 import {waitForAnimationFrame} from '@augment-vir/web';
 import {css, defineElement, defineElementEvent, html, listen} from 'element-vir';
-import {GamepadDevice} from 'input-device-handler';
+import {type GamepadDevice} from 'input-device-handler';
 import {ViraButton, ViraInput, noNativeFormStyles} from 'vira';
 import {findMatchingGamepadModel} from '../../../index.js';
 import {ModalClose} from '../../events/modal-close.event.js';
@@ -49,8 +49,10 @@ export const VirCreateNewTypeModal = defineElement<{
             width: 100%;
         }
     `,
-    stateInitStatic: {
-        newModelName: '',
+    state() {
+        return {
+            newModelName: '',
+        };
     },
     init({host}) {
         setTimeout(async () => {

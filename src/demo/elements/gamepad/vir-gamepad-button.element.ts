@@ -1,6 +1,6 @@
 import {classMap, css, defineElement, html} from 'element-vir';
-import {DeviceInputType, GamepadInputDetails} from 'input-device-handler';
-import {GamepadLayout} from '../../../index.js';
+import {DeviceInputType, type GamepadInputDetails} from 'input-device-handler';
+import {type GamepadLayout} from '../../../index.js';
 import {getGamepadBrandColor} from '../../gamepad-brand-color.js';
 
 export const VirGamepadButton = defineElement<{

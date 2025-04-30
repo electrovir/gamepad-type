@@ -1,5 +1,5 @@
-import {PartialWithUndefined} from '@augment-vir/common';
-import {SystemVersions} from './system-versions.js';
+import {type PartialWithUndefined} from '@augment-vir/common';
+import {type SystemVersions} from './system-versions.js';
 
 /**
  * A mapping of gamepad button and axe numbers to their names. Mappings depend on the current system

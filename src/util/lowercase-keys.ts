@@ -1,5 +1,5 @@
 import {check} from '@augment-vir/assert';
-import {mapObject, Values} from '@augment-vir/common';
+import {mapObject, type Values} from '@augment-vir/common';
 
 export function makeObjectKeysLowercase<Generic extends Readonly<Record<PropertyKey, unknown>>>(
     input: Generic,

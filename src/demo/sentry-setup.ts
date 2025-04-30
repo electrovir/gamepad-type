@@ -1,4 +1,4 @@
-import {initSentry} from 'sentry-vir/dist/esm/browser';
+import {initSentry} from 'sentry-vir/dist/browser';
 import {globalVars} from './global-vars.js';
 
 const isDev = window.location.hostname === 'localhost';

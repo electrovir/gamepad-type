@@ -1,8 +1,8 @@
 import {check} from '@augment-vir/assert';
 import {filterObject} from '@augment-vir/common';
 import {
-    GamepadLayout,
-    GamepadModelMap,
+    type GamepadLayout,
+    type GamepadModelMap,
     defaultGamepadLayouts,
     defaultGamepadModelMap,
 } from '../../index.js';

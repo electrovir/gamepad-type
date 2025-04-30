@@ -1,9 +1,13 @@
 import {assert} from '@augment-vir/assert';
 import {getEnumValues, getObjectTypedValues} from '@augment-vir/common';
 import {css, defineElement, defineElementEvent, html, listen, onDomCreated} from 'element-vir';
-import {GamepadDevice} from 'input-device-handler';
+import {type GamepadDevice} from 'input-device-handler';
 import {noNativeFormStyles, noNativeSpacing} from 'vira';
-import {GamepadModelMap, PredefinedGamepadModel, findMatchingGamepadModel} from '../../../index.js';
+import {
+    type GamepadModelMap,
+    PredefinedGamepadModel,
+    findMatchingGamepadModel,
+} from '../../../index.js';
 import {getGamepadBrandColor} from '../../gamepad-brand-color.js';
 import {kebabCaseToNameCase} from '../../util/casing.js';
 

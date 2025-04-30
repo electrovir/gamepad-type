@@ -1,6 +1,6 @@
 import {css, defineElement, html} from 'element-vir';
-import {GamepadDevice} from 'input-device-handler/dist/device/input-device';
-import {GamepadLayout, GamepadModelMap} from '../../../index.js';
+import {type GamepadDevice} from 'input-device-handler/dist/device/input-device';
+import {type GamepadLayout, type GamepadModelMap} from '../../../index.js';
 import {VirGamepadInputs} from './vir-gamepad-inputs.element.js';
 import {VirGamepadName} from './vir-gamepad-name.element.js';
 

@@ -1,7 +1,11 @@
 import {getObjectTypedKeys} from '@augment-vir/common';
 import {css, defineElement, defineElementEvent, html, listen} from 'element-vir';
-import {GamepadDevice, GamepadInputValue} from 'input-device-handler';
-import {GamepadLayout, GamepadModelMap, findMatchingGamepadModel} from '../../../index.js';
+import {type GamepadDevice, type GamepadInputValue} from 'input-device-handler';
+import {
+    type GamepadLayout,
+    type GamepadModelMap,
+    findMatchingGamepadModel,
+} from '../../../index.js';
 import {VirGamepadInput} from './vir-gamepad-input.element.js';
 
 export const VirGamepadInputs = defineElement<{

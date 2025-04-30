@@ -1,6 +1,6 @@
 import {
     DeviceInputType,
-    GamepadDevice,
+    type GamepadDevice,
     GamepadInputDeviceKey,
     InputDeviceType,
 } from 'input-device-handler';

@@ -1,4 +1,4 @@
-import {GamepadLayout, PredefinedGamepadModel} from '../index.js';
+import {type GamepadLayout, type PredefinedGamepadModel} from '../index.js';
 
 export type GamepadOverrides = Readonly<{
     gamepadTypes: Readonly<{[deviceName: string]: PredefinedGamepadModel}>;

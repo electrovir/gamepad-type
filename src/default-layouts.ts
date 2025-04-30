@@ -1,5 +1,5 @@
 /* eslint-disable sonarjs/no-hardcoded-ip */
-import {GamepadLayout} from './gamepad-layout.js';
+import {type GamepadLayout} from './gamepad-layout.js';
 import {PredefinedGamepadModel} from './gamepad-model.js';
 
 /**

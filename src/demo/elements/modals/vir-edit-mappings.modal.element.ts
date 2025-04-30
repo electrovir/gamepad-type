@@ -3,14 +3,14 @@ import {waitForAnimationFrame} from '@augment-vir/web';
 import {css, defineElement, defineElementEvent, html, listen} from 'element-vir';
 import {
     CurrentInputsChangedEvent,
-    GamepadDevice,
-    GamepadInputValue,
-    InputDeviceHandler,
+    type GamepadDevice,
+    type GamepadInputValue,
+    type InputDeviceHandler,
 } from 'input-device-handler';
 import {ViraInput, noNativeFormStyles} from 'vira';
 import {
-    GamepadLayout,
-    GamepadModelMap,
+    type GamepadLayout,
+    type GamepadModelMap,
     findMatchingGamepadLayout,
     findMatchingGamepadModel,
 } from '../../../index.js';
@@ -59,8 +59,10 @@ export const VirEditMappingsModal = defineElement<{
             justify-content: center;
         }
     `,
-    stateInitStatic: {
-        cleanup: undefined as undefined | (() => void),
+    state() {
+        return {
+            cleanup: undefined as undefined | (() => void),
+        };
     },
     init({state, updateState, inputs, host, dispatch, events}) {
         function focusInput() {

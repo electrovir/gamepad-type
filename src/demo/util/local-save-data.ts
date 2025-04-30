@@ -1,11 +1,11 @@
 import localForage from 'localforage-esm';
 import {
-    GamepadLayout,
-    GamepadModelMap,
+    type GamepadLayout,
+    type GamepadModelMap,
     defaultGamepadLayouts,
     defaultGamepadModelMap,
 } from '../../index.js';
-import {ChangedEntries} from './check-changes.js';
+import {type ChangedEntries} from './check-changes.js';
 
 const gamepadTypeStore = localForage.createInstance({
     name: 'gamepad-type',

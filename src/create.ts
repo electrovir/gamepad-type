@@ -1,7 +1,7 @@
-import type {GamepadDevice} from 'input-device-handler';
+import {type GamepadDevice} from 'input-device-handler';
 import {findMatchingGamepadModel} from './find-matches.js';
-import type {GamepadLayout} from './gamepad-layout.js';
-import type {GamepadModelMap} from './gamepad-model.js';
+import {type GamepadLayout} from './gamepad-layout.js';
+import {type GamepadModelMap} from './gamepad-model.js';
 import {getSystemVersions} from './system-versions.js';
 
 /**

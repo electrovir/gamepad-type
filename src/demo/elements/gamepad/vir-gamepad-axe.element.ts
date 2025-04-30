@@ -1,7 +1,7 @@
 import {css, defineElement, html} from 'element-vir';
-import {GamepadInputDetails} from 'input-device-handler';
+import {type GamepadInputDetails} from 'input-device-handler';
 import {noNativeSpacing} from 'vira';
-import {GamepadLayout} from '../../../index.js';
+import {type GamepadLayout} from '../../../index.js';
 import {getGamepadBrandColor} from '../../gamepad-brand-color.js';
 
 export const VirGamepadAxe = defineElement<{

@@ -1,6 +1,6 @@
 import {
-    GamepadBrandMap,
-    GamepadModelMap,
+    type GamepadBrandMap,
+    type GamepadModelMap,
     PredefinedGamepadBrand,
     PredefinedGamepadModel,
 } from './gamepad-model.js';

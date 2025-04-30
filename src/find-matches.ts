@@ -1,15 +1,15 @@
 import {check} from '@augment-vir/assert';
 import {mapObjectValues} from '@augment-vir/common';
-import type {GamepadDevice, InputDevice} from 'input-device-handler';
+import {type GamepadDevice, type InputDevice} from 'input-device-handler';
 import {defaultGamepadLayouts} from './default-layouts.js';
 import {defaultGamepadBrandMap, defaultGamepadModelMap} from './default-models.js';
-import type {GamepadLayout} from './gamepad-layout.js';
+import {type GamepadLayout} from './gamepad-layout.js';
 import {
-    GamepadBrandMap,
-    GamepadModelMap,
+    type GamepadBrandMap,
+    type GamepadModelMap,
     predefinedGamepadModelDescriptions,
 } from './gamepad-model.js';
-import {SystemVersions, getSystemVersions} from './system-versions.js';
+import {type SystemVersions, getSystemVersions} from './system-versions.js';
 import {makeObjectKeysLowercase} from './util/lowercase-keys.js';
 
 /**

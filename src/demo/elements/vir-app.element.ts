@@ -1,27 +1,18 @@
 import {copyThroughJson, makeWritable, pickObjectKeys} from '@augment-vir/common';
+import {asyncProp, css, defineElementNoInputs, html, listen} from 'element-vir';
 import {
-    asyncProp,
-    css,
-    defineElementNoInputs,
-    html,
-    isAsyncError,
-    isResolved,
-    listen,
-    perInstance,
-} from 'element-vir';
-import {
-    AllDevices,
+    type AllDevices,
     CurrentInputsChangedEvent,
-    GamepadDevice,
-    GamepadInputValue,
+    type GamepadDevice,
+    type GamepadInputValue,
     InputDeviceHandler,
     InputDeviceType,
 } from 'input-device-handler';
 import {sendLog} from 'sentry-vir';
 import {LoaderAnimated24Icon, ViraButton, ViraButtonStyle, ViraIcon, noNativeSpacing} from 'vira';
 import {
-    GamepadLayout,
-    GamepadModelMap,
+    type GamepadLayout,
+    type GamepadModelMap,
     createEmptyGamepadLayout,
     findMatchingGamepadLayout,
     getSystemVersions,
@@ -29,7 +20,7 @@ import {
 } from '../../index.js';
 import {ModalClose} from '../events/modal-close.event.js';
 import {SelectedGamepadIndexChange} from '../events/selected-gamepad-index-change.event.js';
-import {GamepadOverrides} from '../overrides.js';
+import {type GamepadOverrides} from '../overrides.js';
 import {setupSentry} from '../sentry-setup.js';
 import {extractNewChanges} from '../util/check-changes.js';
 import {
@@ -166,42 +157,41 @@ export const VirApp = defineElementNoInputs({
             color: red;
         }
     `,
-    stateInitStatic: {
-        deviceHandler: perInstance(
-            () =>
-                new InputDeviceHandler({
-                    startLoopImmediately: false,
-                    disableMouseMovement: true,
-                    globalDeadZone: 0.1,
+    state() {
+        return {
+            deviceHandler: new InputDeviceHandler({
+                startLoopImmediately: false,
+                disableMouseMovement: true,
+                globalDeadZone: 0.1,
+            }),
+            gamepadDevices: [] as ReadonlyArray<Readonly<GamepadDevice>>,
+            newInputs: {timestamp: 0, devices: [] as ReadonlyArray<string>},
+            gamepadIndexForEditing: 0,
+            inputForEditing: undefined as Readonly<GamepadInputValue> | undefined,
+            savedGamepadLayouts: asyncProp({
+                defaultValue: loadSavedLayouts().then((result) => {
+                    console.info('Loaded layouts:');
+                    console.info(JSON.stringify(result));
+                    return result;
                 }),
-        ),
-        gamepadDevices: [] as ReadonlyArray<Readonly<GamepadDevice>>,
-        newInputs: {timestamp: 0, devices: [] as ReadonlyArray<string>},
-        gamepadIndexForEditing: 0,
-        inputForEditing: undefined as Readonly<GamepadInputValue> | undefined,
-        savedGamepadLayouts: asyncProp({
-            defaultValue: loadSavedLayouts().then((result) => {
-                console.info('Loaded layouts:');
-                console.info(JSON.stringify(result));
-                return result;
             }),
-        }),
-        submittedChanges: asyncProp({
-            defaultValue: loadSubmittedChanges(),
-        }),
-        savedGamepadModelMap: asyncProp({
-            defaultValue: loadSavedModelMap().then((result) => {
-                console.info('Loaded model map:');
-                console.info(JSON.stringify(result));
-                return result;
+            submittedChanges: asyncProp({
+                defaultValue: loadSubmittedChanges(),
             }),
-        }),
-        overrides: {
-            gamepadLayouts: [],
-            gamepadTypes: {},
-        } as undefined | GamepadOverrides,
-        editMode: EditMode.None,
-        cleanup: undefined as (() => void) | undefined,
+            savedGamepadModelMap: asyncProp({
+                defaultValue: loadSavedModelMap().then((result) => {
+                    console.info('Loaded model map:');
+                    console.info(JSON.stringify(result));
+                    return result;
+                }),
+            }),
+            overrides: {
+                gamepadLayouts: [],
+                gamepadTypes: {},
+            } as undefined | GamepadOverrides,
+            editMode: EditMode.None,
+            cleanup: undefined as (() => void) | undefined,
+        };
     },
     init({state, updateState}) {
         const cleanupCallbacks = [
@@ -252,27 +242,28 @@ export const VirApp = defineElementNoInputs({
         updateState({cleanup: undefined});
     },
     render({state, updateState}) {
-        const savedLayouts = makeWritable(state.savedGamepadLayouts.value);
-        const savedModelMap = state.savedGamepadModelMap.value;
-        const submittedChanges = state.submittedChanges.value;
         if (
-            !isResolved(savedLayouts) ||
-            !isResolved(savedModelMap) ||
-            !isResolved(submittedChanges)
+            state.savedGamepadLayouts.isWaiting() ||
+            state.savedGamepadModelMap.isWaiting() ||
+            state.submittedChanges.isWaiting()
         ) {
             return html`
                 <${ViraIcon.assign({icon: LoaderAnimated24Icon})}></${ViraIcon}>
             `;
-        }
-        if (
-            isAsyncError(savedLayouts) ||
-            isAsyncError(savedModelMap) ||
-            isAsyncError(submittedChanges)
+        } else if (
+            !state.savedGamepadLayouts.isResolved() ||
+            !state.savedGamepadModelMap.isResolved() ||
+            !state.submittedChanges.isResolved()
         ) {
             return html`
                 <p class="error">Failed to initialize.</p>
             `;
         }
+
+        const savedLayouts = makeWritable(state.savedGamepadLayouts.value);
+        const savedModelMap = state.savedGamepadModelMap.value;
+        const submittedChanges = state.submittedChanges.value;
+
         const notSubmittedChanges = extractNewChanges(
             {layouts: savedLayouts, models: savedModelMap},
             submittedChanges,
