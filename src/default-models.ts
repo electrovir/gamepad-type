@@ -43,6 +43,8 @@ export const defaultGamepadModelMap: Readonly<GamepadModelMap> = {
     'DUALSHOCK 4 Wireless Controller (STANDARD GAMEPAD Vendor: 054c Product: 09cc)':
         PredefinedGamepadModel.PlaystationDualShock4, // 9e8343773463416683ac7501d766e682
     '54c-9cc-DUALSHOCK 4 Wireless Controller': PredefinedGamepadModel.PlaystationDualShock4, // 25024a8747044b43b71608ffa13c18c7
+    'HID-compliant game controller (STANDARD GAMEPAD Vendor: 045e Product: 0b13)':
+        PredefinedGamepadModel.XboxWireless, // issues #6578763126
 };
 
 /**
