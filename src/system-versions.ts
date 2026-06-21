@@ -20,7 +20,7 @@ export type SystemVersions = Readonly<{
  * Get the current system's versions. This is determined by parsing the user agent string using the
  * [bowser](https://www.npmjs.com/package/bowser) package.
  *
- * @category Utils
+ * @category Util
  */
 export function getSystemVersions(): SystemVersions {
     return {
@@ -34,7 +34,7 @@ export function getSystemVersions(): SystemVersions {
 /**
  * Check if a system version is in an array of system versions.
  *
- * @category Utils
+ * @category Util
  */
 export function includesSystemVersion(
     systemVersions: ReadonlyArray<Readonly<SystemVersions>>,
