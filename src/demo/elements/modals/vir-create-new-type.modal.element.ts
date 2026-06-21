@@ -98,7 +98,9 @@ export const VirCreateNewTypeModal = defineElement<{
             </select>
         `;
 
-        const {gamepadModel} = findMatchingGamepadModel({gamepad: selectedDevice});
+        const {gamepadModel} = findMatchingGamepadModel({
+            gamepad: selectedDevice,
+        });
 
         const currentModelTemplate = html`
             <p>Current model: ${gamepadModel ? kebabCaseToNameCase(gamepadModel) : 'unknown'}</p>
@@ -111,7 +113,9 @@ export const VirCreateNewTypeModal = defineElement<{
                 disableBrowserHelps: true,
             })}
                 ${listen(ViraInput.events.valueChange, (event) => {
-                    updateState({newModelName: event.detail});
+                    updateState({
+                        newModelName: event.detail,
+                    });
                 })}
             ></${ViraInput}>
             <${ViraButton.assign({
@@ -125,7 +129,9 @@ export const VirCreateNewTypeModal = defineElement<{
         `;
 
         return html`
-            <${VirModal.assign({modalTitle: 'Enter New Model'})}>
+            <${VirModal.assign({
+                modalTitle: 'Enter New Model',
+            })}>
                 <div class="wrapper">
                     <div class="selected-gamepad">
                         <span>Selected Gamepad by Name:</span>

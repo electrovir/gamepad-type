@@ -17,11 +17,11 @@ export function extractNewChanges(
     lastSubmitted: Readonly<ChangedEntries> | undefined,
 ): Readonly<ChangedEntries> {
     const changedLayouts = layouts.filter((layout) => {
-        const matchesDefault = !!defaultGamepadLayouts.some((defaultLayout) => {
+        const matchesDefault = defaultGamepadLayouts.some((defaultLayout) => {
             return check.jsonEquals(defaultLayout, layout);
         });
         const matchesSubmitted: boolean = lastSubmitted
-            ? !!lastSubmitted.layouts.some((submittedLayout) => {
+            ? lastSubmitted.layouts.some((submittedLayout) => {
                   return check.jsonEquals(submittedLayout, layout);
               })
             : false;

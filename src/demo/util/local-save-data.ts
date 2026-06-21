@@ -1,4 +1,4 @@
-import localForage from 'localforage-esm';
+import {Store} from 'indexed-vir';
 import {
     type GamepadLayout,
     type GamepadModelMap,
@@ -7,21 +7,26 @@ import {
 } from '../../index.js';
 import {type ChangedEntries} from './check-changes.js';
 
-const gamepadTypeStore = localForage.createInstance({
-    name: 'gamepad-type',
-    storeName: 'gamepad-type',
-    description: 'For storing user-entered gamepad information.',
-});
+const gamepadTypeStore = new Store('gamepad-type-indexed-vir');
 const savedLayoutsKey = 'saved-layouts';
 const savedTypesKey = 'saved-types';
 const submittedChangesKey = 'submitted-changes';
+
+async function loadSavedValue<Value>(key: string): Promise<Value | undefined> {
+    const storedValue = await gamepadTypeStore.getItem(key);
+
+    return (storedValue ?? undefined) satisfies unknown as Value | undefined;
+}
 
 export async function resetAllSavedData() {
     await gamepadTypeStore.clear();
 }
 
 export async function loadSavedLayouts(): Promise<ReadonlyArray<Readonly<GamepadLayout>>> {
-    return (await gamepadTypeStore.getItem(savedLayoutsKey)) ?? defaultGamepadLayouts;
+    return (
+        (await loadSavedValue<ReadonlyArray<Readonly<GamepadLayout>>>(savedLayoutsKey)) ??
+        defaultGamepadLayouts
+    );
 }
 
 export async function saveLayouts(layouts: ReadonlyArray<Readonly<GamepadLayout>>): Promise<void> {
@@ -29,7 +34,7 @@ export async function saveLayouts(layouts: ReadonlyArray<Readonly<GamepadLayout>
 }
 
 export async function loadSavedModelMap(): Promise<Readonly<GamepadModelMap>> {
-    const loadedModelMap = (await gamepadTypeStore.getItem(savedTypesKey)) ?? {};
+    const loadedModelMap = (await loadSavedValue<Readonly<GamepadModelMap>>(savedTypesKey)) ?? {};
     return {
         ...defaultGamepadModelMap,
         ...loadedModelMap,
@@ -41,7 +46,7 @@ export async function saveModelMap(types: Readonly<GamepadModelMap>): Promise<vo
 }
 
 export async function loadSubmittedChanges(): Promise<Readonly<ChangedEntries> | undefined> {
-    return (await gamepadTypeStore.getItem(submittedChangesKey)) || undefined;
+    return (await loadSavedValue<Readonly<ChangedEntries>>(submittedChangesKey)) || undefined;
 }
 
 export async function savedSubmittedChanges(changes: Readonly<ChangedEntries>): Promise<void> {

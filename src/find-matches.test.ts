@@ -9,7 +9,9 @@ describe(findMatchingGamepadLayout.name, () => {
         {
             it: 'finds nothing from an unexpected device name',
             input: {
-                gamepad: {deviceName: 'hi this is not real'},
+                gamepad: {
+                    deviceName: 'hi this is not real',
+                },
             },
             expect: undefined,
         },
@@ -36,7 +38,9 @@ describe(findMatchingGamepadLayout.name, () => {
         {
             it: 'finds layout with more specific version number',
             input: {
-                gamepad: {deviceName: 'Wireless Controller Extended Gamepad'},
+                gamepad: {
+                    deviceName: 'Wireless Controller Extended Gamepad',
+                },
                 layouts: mockLayouts,
                 systemVersions: {
                     browserVersion: '17.3.1',

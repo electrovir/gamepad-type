@@ -24,7 +24,7 @@ export type SystemVersions = Readonly<{
  */
 export function getSystemVersions(): SystemVersions {
     return {
-        browserVersion: bowser.getBrowserVersion(),
+        browserVersion: bowser.getBrowserVersion() || 'unknown',
         browserName: bowser.getBrowserName(),
         osName: bowser.getOSName(),
         osVersion: bowser.getOSVersion(),
@@ -40,5 +40,5 @@ export function includesSystemVersion(
     systemVersions: ReadonlyArray<Readonly<SystemVersions>>,
     systemVersion: Readonly<SystemVersions>,
 ): boolean {
-    return !!systemVersions.some((matchThis) => check.jsonEquals(matchThis, systemVersion));
+    return systemVersions.some((matchThis) => check.jsonEquals(matchThis, systemVersion));
 }

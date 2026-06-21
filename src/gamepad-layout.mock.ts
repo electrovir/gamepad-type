@@ -35,7 +35,9 @@ export const mockLayouts: ReadonlyArray<Readonly<GamepadLayout>> = [
                 osVersion: '10.15.7',
             },
         ],
-        notes: {info: 'The capture / screenshot button is not detected by this browser.'},
+        notes: {
+            info: 'The capture / screenshot button is not detected by this browser.',
+        },
     },
     {
         gamepadModels: ['xbox-wireless'],
@@ -70,7 +72,9 @@ export const mockLayouts: ReadonlyArray<Readonly<GamepadLayout>> = [
                 osVersion: '10.15.7',
             },
         ],
-        notes: {info: 'The share button is not detected by this browser.'},
+        notes: {
+            info: 'The share button is not detected by this browser.',
+        },
     },
     {
         gamepadModels: ['switch-pro'],
@@ -141,7 +145,9 @@ export const mockLayouts: ReadonlyArray<Readonly<GamepadLayout>> = [
                 osVersion: '10.15.7',
             },
         ],
-        notes: {info: 'Touch pad navigation and the mute button are not detected by this browser.'},
+        notes: {
+            info: 'Touch pad navigation and the mute button are not detected by this browser.',
+        },
     },
     {
         inputMappings: {
@@ -210,9 +216,16 @@ export const mockLayouts: ReadonlyArray<Readonly<GamepadLayout>> = [
         },
         gamepadModels: ['playstation-dual-sense'],
         systemVersions: [
-            {browserVersion: '109.0', browserName: 'Firefox', osName: 'macOS', osVersion: '10.15'},
+            {
+                browserVersion: '109.0',
+                browserName: 'Firefox',
+                osName: 'macOS',
+                osVersion: '10.15',
+            },
         ],
-        notes: {warning: 'This browser has major issues reading this gamepad.'},
+        notes: {
+            warning: 'This browser has major issues reading this gamepad.',
+        },
     },
     {
         gamepadModels: ['xbox-wireless'],
@@ -241,9 +254,16 @@ export const mockLayouts: ReadonlyArray<Readonly<GamepadLayout>> = [
             'button-16': 'RT',
         },
         systemVersions: [
-            {browserVersion: '109.0', browserName: 'Firefox', osName: 'macOS', osVersion: '10.15'},
+            {
+                browserVersion: '109.0',
+                browserName: 'Firefox',
+                osName: 'macOS',
+                osVersion: '10.15',
+            },
         ],
-        notes: {warning: 'This browser has major issues reading this gamepad.'},
+        notes: {
+            warning: 'This browser has major issues reading this gamepad.',
+        },
     },
     {
         gamepadModels: ['xbox-wireless'],

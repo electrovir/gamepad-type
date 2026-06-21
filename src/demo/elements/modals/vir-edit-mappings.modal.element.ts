@@ -104,12 +104,16 @@ export const VirEditMappingsModal = defineElement<{
                     );
                 }
             });
-            updateState({cleanup});
+            updateState({
+                cleanup,
+            });
         }
     },
     cleanup({state, updateState}) {
         state.cleanup?.();
-        updateState({cleanup: undefined});
+        updateState({
+            cleanup: undefined,
+        });
     },
     render({inputs, dispatch, events}) {
         const selectedDevice = inputs.gamepadDevices[inputs.selectedGamepadIndex];
@@ -170,7 +174,7 @@ export const VirEditMappingsModal = defineElement<{
                   <${VirGamepadInput.assign({
                       gamepadLayout: undefined,
                       gamepadInput: currentInput,
-                      gamepadBrand: gamepadBrand,
+                      gamepadBrand,
                   })}></${VirGamepadInput}>
               `
             : html`
@@ -203,7 +207,9 @@ export const VirEditMappingsModal = defineElement<{
             : '';
 
         return html`
-            <${VirModal.assign({modalTitle: 'Edit Mappings'})}>
+            <${VirModal.assign({
+                modalTitle: 'Edit Mappings',
+            })}>
                 <div class="wrapper">
                     <div class="selected-gamepad">
                         <span>Selected Gamepad:</span>

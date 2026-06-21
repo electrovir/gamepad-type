@@ -154,10 +154,26 @@ const mockSwitchProGamepad: Readonly<GamepadDevice> = {
             },
         },
         axes: [
-            {inputName: 'axe-0', inputType: DeviceInputType.Axe, value: 0},
-            {inputName: 'axe-1', inputType: DeviceInputType.Axe, value: 0},
-            {inputName: 'axe-2', inputType: DeviceInputType.Axe, value: 0},
-            {inputName: 'axe-3', inputType: DeviceInputType.Axe, value: 0},
+            {
+                inputName: 'axe-0',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
+            {
+                inputName: 'axe-1',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
+            {
+                inputName: 'axe-2',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
+            {
+                inputName: 'axe-3',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
         ],
         buttons: [
             {
@@ -250,7 +266,7 @@ const mockSwitchProGamepad: Readonly<GamepadDevice> = {
         gamepadName: 'Pro Controller Extended Gamepad',
         mapping: 'standard',
         serialized: true,
-        timestamp: 23_640.422_582_875,
+        timestamp: 23_640.422582875,
     },
     deviceName: 'Pro Controller Extended Gamepad',
     deviceKey: GamepadInputDeviceKey.Gamepad4,
@@ -407,10 +423,26 @@ const mockXboxWirelessGamepad: Readonly<GamepadDevice> = {
             },
         },
         axes: [
-            {inputName: 'axe-0', inputType: DeviceInputType.Axe, value: 0},
-            {inputName: 'axe-1', inputType: DeviceInputType.Axe, value: 0},
-            {inputName: 'axe-2', inputType: DeviceInputType.Axe, value: 0},
-            {inputName: 'axe-3', inputType: DeviceInputType.Axe, value: 0},
+            {
+                inputName: 'axe-0',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
+            {
+                inputName: 'axe-1',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
+            {
+                inputName: 'axe-2',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
+            {
+                inputName: 'axe-3',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
         ],
         buttons: [
             {
@@ -503,7 +535,7 @@ const mockXboxWirelessGamepad: Readonly<GamepadDevice> = {
         gamepadName: 'Xbox Wireless Controller Extended Gamepad',
         mapping: 'standard',
         serialized: true,
-        timestamp: 23_640.422_582_875,
+        timestamp: 23_640.422582875,
     },
     deviceName: 'Xbox Wireless Controller Extended Gamepad',
     deviceKey: GamepadInputDeviceKey.Gamepad4,
@@ -660,10 +692,26 @@ const mockPlayStationDualSenseGamepad: Readonly<GamepadDevice> = {
             },
         },
         axes: [
-            {inputName: 'axe-0', inputType: DeviceInputType.Axe, value: 0},
-            {inputName: 'axe-1', inputType: DeviceInputType.Axe, value: 0},
-            {inputName: 'axe-2', inputType: DeviceInputType.Axe, value: 0},
-            {inputName: 'axe-3', inputType: DeviceInputType.Axe, value: 0},
+            {
+                inputName: 'axe-0',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
+            {
+                inputName: 'axe-1',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
+            {
+                inputName: 'axe-2',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
+            {
+                inputName: 'axe-3',
+                inputType: DeviceInputType.Axe,
+                value: 0,
+            },
         ],
         buttons: [
             {
@@ -756,7 +804,7 @@ const mockPlayStationDualSenseGamepad: Readonly<GamepadDevice> = {
         gamepadName: 'DualSense Wireless Controller Extended Gamepad',
         mapping: 'standard',
         serialized: true,
-        timestamp: 23_640.422_582_875,
+        timestamp: 23_640.422582875,
     },
     deviceName: 'DualSense Wireless Controller Extended Gamepad',
     deviceKey: GamepadInputDeviceKey.Gamepad4,

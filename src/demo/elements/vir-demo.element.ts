@@ -1,5 +1,5 @@
 import {copyThroughJson, makeWritable, pickObjectKeys} from '@augment-vir/common';
-import {asyncProp, css, defineElementNoInputs, html, listen} from 'element-vir';
+import {asyncProp, css, defineElement, html, listen} from 'element-vir';
 import {
     type AllDevices,
     CurrentInputsChangedEvent,
@@ -9,7 +9,14 @@ import {
     InputDeviceType,
 } from 'input-device-handler';
 import {sendLog} from 'sentry-vir';
-import {LoaderAnimated24Icon, ViraButton, ViraButtonStyle, ViraIcon, noNativeSpacing} from 'vira';
+import {
+    LoaderAnimated24Icon,
+    ViraButton,
+    ViraColorVariant,
+    ViraEmphasis,
+    ViraIcon,
+    noNativeSpacing,
+} from 'vira';
 import {
     type GamepadLayout,
     type GamepadModelMap,
@@ -48,8 +55,8 @@ enum EditMode {
     CreateType = 'create-type',
 }
 
-export const VirApp = defineElementNoInputs({
-    tagName: 'vir-app',
+export const VirDemo = defineElement()({
+    tagName: 'vir-demo',
     styles: css`
         :host {
             box-sizing: border-box;
@@ -123,12 +130,6 @@ export const VirApp = defineElementNoInputs({
             justify-content: space-between;
         }
 
-        .reset-button {
-            ${ViraButton.cssVars['vira-button-primary-color'].name}: red;
-            ${ViraButton.cssVars['vira-button-primary-hover-color'].name}: red;
-            ${ViraButton.cssVars['vira-button-primary-active-color'].name}: red;
-        }
-
         .submission-buttons {
             display: flex;
             gap: 16px;
@@ -165,7 +166,10 @@ export const VirApp = defineElementNoInputs({
                 globalDeadZone: 0.1,
             }),
             gamepadDevices: [] as ReadonlyArray<Readonly<GamepadDevice>>,
-            newInputs: {timestamp: 0, devices: [] as ReadonlyArray<string>},
+            newInputs: {
+                timestamp: 0,
+                devices: [] as ReadonlyArray<string>,
+            },
             gamepadIndexForEditing: 0,
             inputForEditing: undefined as Readonly<GamepadInputValue> | undefined,
             savedGamepadLayouts: asyncProp({
@@ -208,7 +212,7 @@ export const VirApp = defineElementNoInputs({
                 const now = Date.now();
                 const devicesWithNewInputs = event.detail.inputs.newInputs.reduce(
                     (accum, newInput) => {
-                        accum.add(String(newInput.deviceKey));
+                        accum.add(newInput.deviceKey);
                         return accum;
                     },
                     new Set<string>(),
@@ -239,7 +243,9 @@ export const VirApp = defineElementNoInputs({
     },
     cleanup({state, updateState}) {
         state.cleanup?.();
-        updateState({cleanup: undefined});
+        updateState({
+            cleanup: undefined,
+        });
     },
     render({state, updateState}) {
         if (
@@ -248,7 +254,9 @@ export const VirApp = defineElementNoInputs({
             state.submittedChanges.isWaiting()
         ) {
             return html`
-                <${ViraIcon.assign({icon: LoaderAnimated24Icon})}></${ViraIcon}>
+                <${ViraIcon.assign({
+                    icon: LoaderAnimated24Icon,
+                })}></${ViraIcon}>
             `;
         } else if (
             !state.savedGamepadLayouts.isResolved() ||
@@ -265,11 +273,17 @@ export const VirApp = defineElementNoInputs({
         const submittedChanges = state.submittedChanges.value;
 
         const notSubmittedChanges = extractNewChanges(
-            {layouts: savedLayouts, models: savedModelMap},
+            {
+                layouts: savedLayouts,
+                models: savedModelMap,
+            },
             submittedChanges,
         );
         const changes = extractNewChanges(
-            {layouts: savedLayouts, models: savedModelMap},
+            {
+                layouts: savedLayouts,
+                models: savedModelMap,
+            },
             undefined,
         );
         const hasAnyChanges = changes.layouts.length || Object.values(changes.models).length;
@@ -366,7 +380,9 @@ export const VirApp = defineElementNoInputs({
                             ${listen(
                                 VirEditMappingsModal.events.selectedGamepadInputChange,
                                 (event) => {
-                                    updateState({inputForEditing: event.detail});
+                                    updateState({
+                                        inputForEditing: event.detail,
+                                    });
                                 },
                             )}
                             ${listen(VirEditMappingsModal.events.inputMapSave, async (event) => {
@@ -433,7 +449,9 @@ export const VirApp = defineElementNoInputs({
                     });
                 })}
                 ${listen(SelectedGamepadIndexChange, (event) => {
-                    updateState({gamepadIndexForEditing: event.detail});
+                    updateState({
+                        gamepadIndexForEditing: event.detail,
+                    });
                 })}
             >
                 <div class="modal-wrapper">${currentModalTemplate}</div>
@@ -477,23 +495,25 @@ export const VirApp = defineElementNoInputs({
                             <div class="column">
                                 <${ViraButton.assign({
                                     text: 'Submit Changes',
-                                    disabled: !hasNotSubmitted,
+                                    isDisabled: !hasNotSubmitted,
                                 })}
                                     ${listen('click', async () => {
                                         await savedSubmittedChanges(notSubmittedChanges);
                                         state.submittedChanges.setValue(notSubmittedChanges);
                                         sendLog.info('New mapping override received', {
-                                            changes: notSubmittedChanges,
-                                            systemVersions: getSystemVersions(),
-                                            connectedDevices: state.gamepadDevices.map(
-                                                (gamepadDevice) => {
-                                                    return pickObjectKeys(gamepadDevice, [
-                                                        'deviceKey',
-                                                        'deviceName',
-                                                        'deviceType',
-                                                    ]);
-                                                },
-                                            ),
+                                            context: {
+                                                changes: notSubmittedChanges,
+                                                systemVersions: getSystemVersions(),
+                                                connectedDevices: state.gamepadDevices.map(
+                                                    (gamepadDevice) => {
+                                                        return pickObjectKeys(gamepadDevice, [
+                                                            'deviceKey',
+                                                            'deviceName',
+                                                            'deviceType',
+                                                        ]);
+                                                    },
+                                                ),
+                                            },
                                         });
                                     })}
                                 ></${ViraButton}>
@@ -503,15 +523,15 @@ export const VirApp = defineElementNoInputs({
                             </div>
                             <${ViraButton.assign({
                                 text: 'Reset Changes',
-                                disabled: !hasAnyChanges,
-                                buttonStyle: ViraButtonStyle.Outline,
+                                isDisabled: !hasAnyChanges,
+                                buttonEmphasis: ViraEmphasis.Subtle,
+                                color: ViraColorVariant.Danger,
                             })}
                                 ${listen('click', async () => {
                                     await resetAllSavedData();
                                     state.savedGamepadLayouts.setValue(loadSavedLayouts());
                                     state.savedGamepadModelMap.setValue(loadSavedModelMap());
                                 })}
-                                class="reset-button"
                             ></${ViraButton}>
                         </div>
                     </div>
