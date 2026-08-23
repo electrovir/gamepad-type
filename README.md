@@ -1,3 +1,8 @@
+**Deprecated. Use one of the following instead:**
+
+-   layout tester: https://github.com/antha-engine/gamepad
+-   npm package: https://www.npmjs.com/package/@antha/gamepad-type
+
 # gamepad-type
 
 Determine gamepad models, brands, and layouts based on the user operating system.
